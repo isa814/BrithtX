@@ -9,14 +9,14 @@ export const siteConfig = {
   location: "Available Worldwide",
   social: {
     github: "https://github.com/isa814",
-    linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
+    linkedin: "https://linkedin.com/in/joseph-britht%C3%B5n-385383362",
+    twitter: "https://x.com/brithton_web",
   },
 };
 
 export const aboutData = {
   story:
-    "I am a full-stack web developer and graphic designer specializing in building scalable SaaS applications, modern web platforms, and high-converting e-commerce systems. I work with React, Node.js, MongoDB, Shopify, and Wix to create fast, responsive, and production-ready digital products. I also have strong experience in graphic design, creating visually compelling branding, UI designs, marketing creatives, and digital assets that enhance user engagement and brand identity. In addition, I explore Web3 technologies, blockchain-based systems, and marketing-driven development to build solutions that are not just functional but business-focused and monetizable.",
+    "Full-stack developer and graphic designer building scalable SaaS apps, e-commerce stores, and modern web platforms with React, Node.js, MongoDB, Shopify & Wix. I combine clean code with compelling design to create products that convert — and explore Web3 to build solutions that are business-focused and monetizable.",
   highlights: [
     { label: "Projects Built", value: "50+" },
     { label: "Happy Clients", value: "30+" },
