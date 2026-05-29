@@ -37,28 +37,29 @@ export default function Navbar() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="flex h-16 items-center justify-between md:h-20">
+            {/* Logo */}
             <a
               href="#"
-              className="text-xl font-bold tracking-tight text-white"
+              className="shrink-0 text-xl font-bold tracking-tight text-white"
             >
               <span className="gradient-text">{siteConfig.logoText.replace("X", "")}</span>
               <span className="text-accent-400">X</span>
             </a>
 
             {/* Desktop links */}
-            <div className="hidden items-center gap-1 md:flex">
+            <div className="hidden items-center md:flex">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
-                  className="rounded-lg px-4 py-2 text-sm font-medium text-surface-200 transition-colors hover:bg-white/5 hover:text-white"
+                  className="rounded-lg px-2.5 py-2 text-[13px] font-medium text-surface-200 transition-colors hover:bg-white/5 hover:text-white lg:px-4 lg:text-sm"
                 >
                   {link.label}
                 </a>
               ))}
               <a
                 href="#contact"
-                className="ml-4 rounded-full bg-primary-600 px-5 py-2 text-sm font-semibold text-white transition-all hover:bg-primary-500 hover:shadow-lg hover:shadow-primary-600/25"
+                className="ml-2 shrink-0 rounded-full bg-primary-600 px-4 py-2 text-[13px] font-semibold text-white transition-all hover:bg-primary-500 hover:shadow-lg hover:shadow-primary-600/25 lg:ml-4 lg:px-5 lg:text-sm"
               >
                 Hire Me
               </a>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -57,7 +59,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         className="bg-surface-950 text-surface-200 antialiased"
         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
       >
-        {children}
+        <Navbar />
+        <main className="relative">{children}</main>
+        <Footer />
       </body>
     </html>
   );

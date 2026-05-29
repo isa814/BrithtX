@@ -30,7 +30,6 @@ const iconMap: Record<string, React.ReactNode> = {
 export default function SkillsSection() {
   return (
     <section id="skills" className="relative bg-surface-900 py-24 lg:py-32">
-      {/* Subtle bg gradient */}
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute right-0 top-0 h-[400px] w-[400px] rounded-full bg-primary-600/5 blur-[100px]" />
         <div className="absolute bottom-0 left-0 h-[300px] w-[300px] rounded-full bg-accent-500/5 blur-[80px]" />
