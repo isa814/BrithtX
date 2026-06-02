@@ -16,7 +16,7 @@ export const siteConfig = {
 
 export const aboutData = {
   story:
-    "Full-stack developer and graphic designer building scalable SaaS apps, e-commerce stores, and modern web platforms with React, Node.js, MongoDB, Shopify & Wix. I combine clean code with compelling design to create products that convert — and explore Web3 to build solutions that are business-focused and monetizable.",
+    "Full-stack developer and graphic designer building scalable SaaS apps, e-commerce stores, and modern web platforms with React, Node.js, MongoDB, Shopify & Wix. I combine clean code with compelling design to create products that convert and explore Web3 to build solutions that are business-focused and monetizable.",
   highlights: [
     { label: "Projects Built", value: "50+" },
     { label: "Happy Clients", value: "30+" },
