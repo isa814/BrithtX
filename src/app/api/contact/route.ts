@@ -1,17 +1,14 @@
+import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { contactMessages } from "@/db/schema";
 
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, email, message } = body as {
-      name?: string;
-      email?: string;
-      message?: string;
-    };
+    const { name, email, message } = body;
 
     if (!name || !email || !message) {
-      return Response.json(
+      return NextResponse.json(
         { error: "Name, email, and message are required" },
         { status: 400 }
       );
@@ -20,7 +17,7 @@ export async function POST(request: Request) {
     // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return Response.json({ error: "Invalid email address" }, { status: 400 });
+      return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
     }
 
     await db.insert(contactMessages).values({

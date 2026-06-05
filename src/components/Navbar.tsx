@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";git 
 import { motion, AnimatePresence } from "framer-motion";
 import { siteConfig } from "@/lib/data";
 
