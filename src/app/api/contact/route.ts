@@ -14,10 +14,12 @@ export async function POST(request: Request) {
       );
     }
 
-    // Basic email validation
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
-      return NextResponse.json({ error: "Invalid email address" }, { status: 400 });
+      return NextResponse.json(
+        { error: "Invalid email address" },
+        { status: 400 }
+      );
     }
 
     await db.insert(contactMessages).values({
@@ -26,10 +28,15 @@ export async function POST(request: Request) {
       message: message.trim(),
     });
 
-    return Response.json({ success: true, message: "Message sent successfully" });
+    return NextResponse.json(
+      { success: true, message: "Message sent successfully" },
+      { status: 200 }
+    );
+
   } catch (error) {
     console.error("Contact form error:", error);
-    return Response.json(
+
+    return NextResponse.json(
       { error: "Failed to send message" },
       { status: 500 }
     );
