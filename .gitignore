@@ -4,3 +4,5 @@ dist
 build
 .env
 .env.local
+tsconfig.tsbuildinfo
+drizzle.config.json

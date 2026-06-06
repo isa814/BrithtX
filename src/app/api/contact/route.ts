@@ -34,7 +34,17 @@ export async function POST(request: Request) {
     );
 
   } catch (error) {
-    console.error("Contact form error:", error);
+    const errorDetails =
+      error instanceof Error
+        ? {
+            name: error.name,
+            message: error.message,
+            stack: error.stack,
+            ...(typeof error === "object" ? error : {}),
+          }
+        : error;
+
+    console.error("Contact form error:", errorDetails);
 
     return NextResponse.json(
       { error: "Failed to send message" },
