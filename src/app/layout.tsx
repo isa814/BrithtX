@@ -1,38 +1,33 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BrithtonX — Full-Stack Developer & Graphic Designer | Portfolio",
+  title: "BrithtonX | Premium Design & Development Portfolio App",
   description:
-    "Full-stack web developer and graphic designer specializing in SaaS development, e-commerce, Web3, and high-converting digital products. Building with React, Node.js, MongoDB, Shopify & more.",
+    "A premium app-like portfolio for BrithtonX services across graphic design, websites, app development, templates, marketing tools, and Web3 design.",
   keywords: [
-    "full-stack developer",
-    "web developer",
-    "graphic designer",
-    "SaaS builder",
-    "React",
-    "Next.js",
-    "Shopify",
-    "e-commerce",
-    "Web3",
-    "freelance",
-    "portfolio",
+    "BrithtonX",
+    "portfolio app",
+    "graphic design",
+    "website design",
+    "app development",
+    "website templates",
+    "marketing tools",
+    "Web3 design",
   ],
   openGraph: {
-    title: "BrithtonX — Full-Stack Developer & Graphic Designer",
+    title: "BrithtonX | Premium Design & Development Portfolio App",
     description:
-      "Building scalable SaaS, modern web platforms & high-converting e-commerce systems.",
+      "Explore BrithtonX services through a futuristic mobile-first portfolio dashboard.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "BrithtonX — Full-Stack Developer & Graphic Designer",
+    title: "BrithtonX | Premium Design & Development Portfolio App",
     description:
-      "Building scalable SaaS, modern web platforms & high-converting e-commerce systems.",
+      "Explore BrithtonX services through a futuristic mobile-first portfolio dashboard.",
   },
   robots: {
     index: true,
@@ -59,9 +54,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         className="bg-surface-950 text-surface-200 antialiased"
         style={{ fontFamily: "'Inter', system-ui, sans-serif" }}
       >
-        <Navbar />
-        <main className="relative">{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
