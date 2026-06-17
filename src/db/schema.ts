@@ -24,3 +24,16 @@ export const clientOrders = pgTable("client_orders", {
   status: text("status").default("new").notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
+
+export const serviceOrders = pgTable("service_orders", {
+  id: serial("id").primaryKey(),
+  name: text("name").notNull(),
+  email: text("email").notNull(),
+  whatsapp: text("whatsapp").notNull(),
+  category: text("category").notNull(),
+  subcategory: text("subcategory").notNull(),
+  budget: text("budget").notNull(),
+  description: text("description").notNull(),
+  status: text("status").default("new").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});

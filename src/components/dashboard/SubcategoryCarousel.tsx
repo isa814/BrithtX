@@ -73,11 +73,11 @@ export default function SubcategoryCarousel({
   };
 
   return (
-    <section className="rounded-[30px] border border-white/10 bg-white/[0.04] p-4 backdrop-blur-xl sm:p-5">
-      <div className="mb-4 flex items-start justify-between gap-4">
+    <section className="rounded-[26px] border border-white/10 bg-white/[0.04] p-3.5 backdrop-blur-xl sm:rounded-[30px] sm:p-5">
+      <div className="mb-4 flex items-start justify-between gap-3 sm:gap-4">
         <div>
-          <h3 className="text-xl font-black text-white">{subcategory.title}</h3>
-          <p className="mt-1 max-w-2xl text-sm leading-6 text-surface-200/58">
+          <h3 className="text-lg font-black text-white sm:text-xl">{subcategory.title}</h3>
+          <p className="mt-1 max-w-2xl text-xs leading-5 text-surface-200/58 sm:text-sm sm:leading-6">
             {subcategory.description}
           </p>
         </div>
@@ -85,7 +85,7 @@ export default function SubcategoryCarousel({
           <button
             type="button"
             onClick={showPrevious}
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
             aria-label={`Previous ${subcategory.title} project`}
           >
             <ChevronLeft className="h-4 w-4" />
@@ -93,7 +93,7 @@ export default function SubcategoryCarousel({
           <button
             type="button"
             onClick={showNext}
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
+            className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-white/10 bg-white/5 text-white transition hover:bg-white/10"
             aria-label={`Next ${subcategory.title} project`}
           >
             <ChevronRight className="h-4 w-4" />
@@ -101,7 +101,7 @@ export default function SubcategoryCarousel({
         </div>
       </div>
 
-      <div className="grid gap-4 lg:grid-cols-[0.9fr_1.1fr] lg:items-stretch">
+      <div className="grid gap-3 sm:gap-4 lg:grid-cols-[0.82fr_1fr] lg:items-stretch xl:grid-cols-[0.78fr_1fr]">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeProject.id}
@@ -123,20 +123,20 @@ export default function SubcategoryCarousel({
           </motion.div>
         </AnimatePresence>
 
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+        <div className="grid gap-2.5 sm:grid-cols-2 sm:gap-3 lg:grid-cols-1">
           {subcategory.projects.map((project, index) => (
             <button
               key={project.id}
               type="button"
               onClick={() => setActiveIndex(index)}
-              className={`rounded-2xl border p-4 text-left transition ${
+              className={`rounded-2xl border p-3.5 text-left transition sm:p-4 ${
                 activeIndex === index
                   ? "border-accent-300/50 bg-accent-300/10"
                   : "border-white/10 bg-white/[0.04] hover:bg-white/[0.08]"
               }`}
             >
               <div className="flex items-center justify-between gap-3">
-                <span className="text-sm font-black text-white">{project.title}</span>
+                <span className="text-xs font-black text-white sm:text-sm">{project.title}</span>
                 <span className="text-xs font-bold text-accent-300">
                   {String(index + 1).padStart(2, "0")}
                 </span>

@@ -101,7 +101,7 @@ export default function FullscreenPreview({
                 onClick={onRequest}
                 className="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3.5 text-sm font-black text-surface-950 transition hover:bg-accent-100"
               >
-                Request quote
+                Request Project
                 <ArrowUpRight className="h-4 w-4" />
               </button>
             </aside>

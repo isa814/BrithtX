@@ -11,10 +11,10 @@ import {
   SlidersHorizontal,
   Sparkles,
 } from "lucide-react";
-import QuoteRequestModal from "@/components/contact/QuoteRequestModal";
 import GlassCard from "@/components/shared/GlassCard";
 import CategoryRail from "./CategoryRail";
 import FullscreenPreview from "./FullscreenPreview";
+import OrderModal from "./OrderModal";
 import ProjectCard from "./ProjectCard";
 import SubcategoryCarousel from "./SubcategoryCarousel";
 import {
@@ -31,7 +31,7 @@ import { fadeUp, staggerContainer } from "@/lib/motion";
 type ActiveProjectContext = {
   category: PortfolioCategory;
   subcategory: PortfolioSubcategory;
-  project: PortfolioProject;
+  project?: PortfolioProject;
 };
 
 const getPriceNumber = (priceLabel: string) => {
@@ -129,7 +129,7 @@ export default function PortfolioDashboard() {
   };
 
   return (
-    <main id="dashboard" className="relative overflow-hidden px-4 pb-28 pt-6 sm:px-6 lg:px-8">
+    <main id="dashboard" className="relative overflow-hidden px-4 pb-24 pt-5 sm:px-6 sm:pb-28 sm:pt-6 lg:px-8">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[-120px] top-24 h-[360px] w-[360px] rounded-full bg-primary-600/12 blur-[110px]" />
         <div className="absolute right-[-140px] top-1/3 h-[420px] w-[420px] rounded-full bg-accent-500/10 blur-[120px]" />
@@ -140,40 +140,40 @@ export default function PortfolioDashboard() {
           variants={staggerContainer}
           initial="hidden"
           animate="show"
-          className="grid gap-5 py-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-stretch"
+          className="grid gap-4 py-5 sm:gap-5 sm:py-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-stretch"
         >
-          <GlassCard className="rounded-[34px] p-5 sm:p-7 lg:p-8">
+          <GlassCard className="rounded-[28px] p-4 sm:rounded-[34px] sm:p-6 lg:p-7">
             <motion.div
               variants={fadeUp}
-              className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.22em] text-accent-300"
+              className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-accent-300 sm:mb-6 sm:text-xs sm:tracking-[0.22em]"
             >
               <Radar className="h-3.5 w-3.5" />
               Portfolio dashboard
             </motion.div>
             <motion.h1
               variants={fadeUp}
-              className="max-w-4xl text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl"
+              className="max-w-4xl text-3xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
               Build-ready design and development services inside one premium app.
             </motion.h1>
             <motion.p
               variants={fadeUp}
-              className="mt-5 max-w-3xl text-base leading-8 text-surface-200/64"
+              className="mt-4 max-w-3xl text-sm leading-7 text-surface-200/64 sm:mt-5 sm:text-base sm:leading-8"
             >
               Browse categories, explore rotating project samples, and request a client-ready
               build without leaving the dashboard.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-7 flex flex-col gap-3 sm:flex-row">
+            <motion.div variants={fadeUp} className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
               <a
                 href="#categories"
-                className="flex items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3.5 text-sm font-black text-surface-950 transition hover:bg-accent-100"
+                className="flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-surface-950 transition hover:bg-accent-100 sm:py-3.5"
               >
                 Explore categories
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href="#request"
-                className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
+                className="flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10 sm:py-3.5"
               >
                 <Mail className="h-4 w-4" />
                 Request custom build
@@ -181,19 +181,19 @@ export default function PortfolioDashboard() {
             </motion.div>
           </GlassCard>
 
-          <GlassCard id="featured" className="rounded-[34px] p-5">
-            <div className="flex h-full flex-col justify-between gap-5">
+          <GlassCard id="featured" className="rounded-[28px] p-4 sm:rounded-[34px] sm:p-5">
+            <div className="flex h-full flex-col justify-between gap-4 sm:gap-5">
               <div>
-                <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-surface-950">
+                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-white text-surface-950 sm:h-12 sm:w-12">
                   <Sparkles className="h-5 w-5" />
                 </div>
                 <p className="text-xs font-bold uppercase tracking-[0.24em] text-surface-200/45">
                   Featured now
                 </p>
-                <h2 className="mt-3 text-2xl font-black text-white">
+                <h2 className="mt-3 text-xl font-black text-white sm:text-2xl">
                   {featuredProject.title}
                 </h2>
-                <p className="mt-3 text-sm leading-6 text-surface-200/58">
+                <p className="mt-3 text-xs leading-5 text-surface-200/58 sm:text-sm sm:leading-6">
                   {featuredProject.description}
                 </p>
               </div>
@@ -206,26 +206,26 @@ export default function PortfolioDashboard() {
                     project: featuredProject,
                   })
                 }
-                className="rounded-2xl bg-primary-500 px-5 py-3 text-sm font-black text-white transition hover:bg-primary-400"
+                className="min-h-11 rounded-2xl bg-primary-500 px-5 py-3 text-sm font-black text-white transition hover:bg-primary-400"
               >
-                Order this style
+                Request Project
               </button>
             </div>
           </GlassCard>
         </motion.section>
 
-        <GlassCard className="rounded-[30px] p-4 sm:p-5">
+        <GlassCard className="rounded-[26px] p-4 sm:rounded-[30px] sm:p-5">
           <div className="mb-4 flex items-center gap-2 text-sm font-black text-white">
             <SlidersHorizontal className="h-4 w-4 text-accent-300" />
             Search and filter portfolio
           </div>
-          <div className="grid gap-3 lg:grid-cols-[1.2fr_0.9fr_0.75fr_0.6fr]">
+          <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-[1.2fr_0.9fr_0.75fr_0.6fr]">
             <label className="relative block">
               <Search className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-surface-200/40" />
               <input
                 value={searchQuery}
                 onChange={(event) => setSearchQuery(event.target.value)}
-                className="w-full rounded-2xl border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-sm text-white outline-none transition placeholder:text-surface-200/35 focus:border-accent-400/60"
+                className="min-h-12 w-full rounded-2xl border border-white/10 bg-white/5 py-3 pl-11 pr-4 text-base text-white outline-none transition placeholder:text-surface-200/35 focus:border-accent-400/60 sm:text-sm"
                 placeholder="Search logos, flyers, SaaS, Web3..."
               />
             </label>
@@ -233,7 +233,7 @@ export default function PortfolioDashboard() {
             <select
               value={filterCategoryId}
               onChange={(event) => setFilterCategoryId(event.target.value)}
-              className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white outline-none transition focus:border-accent-400/60"
+              className="min-h-12 w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white outline-none transition focus:border-accent-400/60 sm:text-sm"
             >
               <option className="bg-surface-950" value="all">
                 All categories
@@ -250,7 +250,7 @@ export default function PortfolioDashboard() {
               onChange={(event) =>
                 setBudgetFilter(event.target.value as (typeof budgetFilters)[number])
               }
-              className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-semibold text-white outline-none transition focus:border-accent-400/60"
+              className="min-h-12 w-full rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-base font-semibold text-white outline-none transition focus:border-accent-400/60 sm:text-sm"
             >
               {budgetFilters.map((filter) => (
                 <option className="bg-surface-950" key={filter} value={filter}>
@@ -259,7 +259,7 @@ export default function PortfolioDashboard() {
               ))}
             </select>
 
-            <label className="flex cursor-pointer items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold text-white">
+            <label className="flex min-h-12 cursor-pointer items-center justify-between gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold text-white">
               Featured
               <input
                 type="checkbox"
@@ -275,10 +275,10 @@ export default function PortfolioDashboard() {
           <section className="py-6">
             <div className="mb-4 flex items-end justify-between gap-4">
               <div>
-                <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent-300">
+                <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-300 sm:text-xs sm:tracking-[0.24em]">
                   Filtered results
                 </p>
-                <h2 className="mt-2 text-2xl font-black text-white">
+                <h2 className="mt-2 text-xl font-black text-white sm:text-2xl">
                   {filteredItems.length} matching projects
                 </h2>
               </div>
@@ -290,14 +290,14 @@ export default function PortfolioDashboard() {
                   setBudgetFilter("All");
                   setFeaturedOnly(false);
                 }}
-                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-white/10"
+                className="min-h-11 rounded-2xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm font-bold text-white transition hover:bg-white/10"
               >
                 Clear
               </button>
             </div>
 
             {filteredItems.length > 0 ? (
-              <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:gap-4">
                 {filteredItems.map((item) => (
                   <ProjectCard
                     key={`${item.category.id}-${item.subcategory.id}-${item.project.id}`}
@@ -308,7 +308,7 @@ export default function PortfolioDashboard() {
                 ))}
               </div>
             ) : (
-              <GlassCard className="rounded-[28px] p-8 text-center">
+              <GlassCard className="rounded-[24px] p-6 text-center sm:rounded-[28px] sm:p-8">
                 <p className="text-sm font-semibold text-surface-200/60">
                   No projects match this search yet.
                 </p>
@@ -334,33 +334,33 @@ export default function PortfolioDashboard() {
             transition={{ duration: 0.28 }}
             className="py-5"
           >
-            <GlassCard className="mb-5 rounded-[34px] p-5 sm:p-7">
+            <GlassCard className="mb-5 rounded-[28px] p-4 sm:rounded-[34px] sm:p-6">
               <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
                 <div>
                   <div
-                    className={`mb-4 inline-flex h-14 w-14 items-center justify-center rounded-3xl bg-gradient-to-br ${activeCategory.accent} text-surface-950 shadow-lg`}
+                    className={`mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br ${activeCategory.accent} text-surface-950 shadow-lg sm:h-14 sm:w-14 sm:rounded-3xl`}
                   >
                     <ActiveCategoryIcon className="h-6 w-6" />
                   </div>
-                  <p className="text-xs font-bold uppercase tracking-[0.24em] text-surface-200/45">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-surface-200/45 sm:text-xs sm:tracking-[0.24em]">
                     Active category
                   </p>
-                  <h2 className="mt-2 text-3xl font-black text-white sm:text-4xl">
+                  <h2 className="mt-2 text-2xl font-black text-white sm:text-4xl">
                     {activeCategory.title}
                   </h2>
                   <p className="mt-3 max-w-3xl text-sm leading-7 text-surface-200/62">
                     {activeCategory.description}
                   </p>
                 </div>
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:min-w-[360px]">
-                  <div className="rounded-2xl bg-white/5 p-4">
-                    <div className="text-2xl font-black text-white">
+                <div className="grid grid-cols-2 gap-2 sm:grid-cols-3 sm:gap-3 lg:min-w-[330px]">
+                  <div className="rounded-2xl bg-white/5 p-3 sm:p-4">
+                    <div className="text-xl font-black text-white sm:text-2xl">
                       {activeCategory.subcategories.length}
                     </div>
                     <div className="mt-1 text-xs text-surface-200/50">Subcategories</div>
                   </div>
-                  <div className="rounded-2xl bg-white/5 p-4">
-                    <div className="text-2xl font-black text-white">
+                  <div className="rounded-2xl bg-white/5 p-3 sm:p-4">
+                    <div className="text-xl font-black text-white sm:text-2xl">
                       {activeCategory.subcategories.reduce(
                         (total, item) => total + item.projects.length,
                         0
@@ -368,8 +368,8 @@ export default function PortfolioDashboard() {
                     </div>
                     <div className="mt-1 text-xs text-surface-200/50">Sample projects</div>
                   </div>
-                  <div className="col-span-2 rounded-2xl bg-white/5 p-4 sm:col-span-1">
-                    <div className="flex items-center gap-2 text-2xl font-black text-white">
+                  <div className="col-span-2 rounded-2xl bg-white/5 p-3 sm:col-span-1 sm:p-4">
+                    <div className="flex items-center gap-2 text-xl font-black text-white sm:text-2xl">
                       <Layers3 className="h-5 w-5 text-accent-300" />
                       UI
                     </div>
@@ -379,7 +379,7 @@ export default function PortfolioDashboard() {
               </div>
             </GlassCard>
 
-            <div className="mb-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mb-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
               {activeCategory.subcategories.map((subcategory) => {
                 const isActive = subcategory.id === activeSubcategory.id;
 
@@ -388,14 +388,14 @@ export default function PortfolioDashboard() {
                     key={subcategory.id}
                     type="button"
                     onClick={() => setActiveSubcategoryId(subcategory.id)}
-                    className={`rounded-[24px] border p-4 text-left transition ${
+                    className={`rounded-[22px] border p-3.5 text-left transition sm:rounded-[24px] sm:p-4 ${
                       isActive
                         ? "border-accent-300/60 bg-accent-300/12 shadow-lg shadow-accent-500/10"
                         : "border-white/10 bg-white/[0.05] hover:bg-white/[0.09]"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-base font-black text-white">
+                      <h3 className="text-sm font-black text-white sm:text-base">
                         {subcategory.title}
                       </h3>
                       <span
@@ -407,6 +407,19 @@ export default function PortfolioDashboard() {
                     <p className="mt-2 line-clamp-2 text-xs leading-5 text-surface-200/55">
                       {subcategory.description}
                     </p>
+                    <span
+                      className="mt-3 inline-flex min-h-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-3 text-xs font-black text-white"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        setActiveRequest({
+                          category: activeCategory,
+                          subcategory,
+                          project: subcategory.projects[0],
+                        });
+                      }}
+                    >
+                      Request Project
+                    </span>
                   </button>
                 );
               })}
@@ -446,11 +459,11 @@ export default function PortfolioDashboard() {
         </AnimatePresence>
 
         <section id="request" className="py-6">
-          <GlassCard className="rounded-[34px] p-5 text-center sm:p-8">
-            <p className="text-xs font-bold uppercase tracking-[0.24em] text-accent-300">
+          <GlassCard className="rounded-[28px] p-5 text-center sm:rounded-[34px] sm:p-8">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-300 sm:text-xs sm:tracking-[0.24em]">
               Custom request
             </p>
-            <h2 className="mt-3 text-3xl font-black text-white">Need something specific?</h2>
+            <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl">Need something specific?</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-surface-200/60">
               Choose any sample as a starting point, or send a custom project request through
               the same contact system already connected to this portfolio.
@@ -464,16 +477,16 @@ export default function PortfolioDashboard() {
                   project: activeCategory.subcategories[0].projects[0],
                 })
               }
-              className="mt-6 rounded-2xl bg-white px-6 py-3.5 text-sm font-black text-surface-950 transition hover:bg-accent-100"
+              className="mt-6 min-h-12 rounded-2xl bg-white px-6 py-3.5 text-sm font-black text-surface-950 transition hover:bg-accent-100"
             >
-              Start request
+              Request Project
             </button>
           </GlassCard>
         </section>
       </div>
 
       {activeRequest && (
-        <QuoteRequestModal
+        <OrderModal
           category={activeRequest.category}
           subcategory={activeRequest.subcategory}
           project={activeRequest.project}
