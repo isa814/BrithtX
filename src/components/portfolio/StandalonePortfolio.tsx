@@ -1,27 +1,46 @@
 "use client";
 
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowUpRight, Palette, PanelTop, Wrench } from "lucide-react";
-import { showcaseWorks } from "@/lib/portfolio-data";
+import { showcaseWorks, type ShowcaseWork } from "@/lib/portfolio-data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
-const portfolioCategories = {
-  "Graphic Design": [
-    "Logo Design",
-    "Flyer Design",
-    "Social Media Design",
-    "Brand Identity",
-  ],
-  "Website Design": [
-    "Portfolio Websites",
-    "Business Websites",
-    "Shopify Stores",
-    "Wix Websites",
-    "SaaS Websites",
-  ],
-} as const;
+const portfolioGroups: Array<{
+  title: ShowcaseWork["discipline"];
+  description: string;
+  categories: string[];
+  icon: typeof Palette;
+}> = [
+  {
+    title: "Graphic Design",
+    description: "Logos, flyers, social media visuals, and brand identity work.",
+    categories: ["Logo Design", "Flyer Design", "Social Media Design", "Brand Identity"],
+    icon: Palette,
+  },
+  {
+    title: "Website Design",
+    description: "Portfolio, business, Shopify, Wix, and SaaS website work.",
+    categories: [
+      "Portfolio Websites",
+      "Business Websites",
+      "Shopify Stores",
+      "Wix Websites",
+      "SaaS Websites",
+    ],
+    icon: PanelTop,
+  },
+];
 
 export default function StandalonePortfolio() {
+  const [activeDiscipline, setActiveDiscipline] =
+    useState<ShowcaseWork["discipline"]>("Graphic Design");
+
+  const activeWorks = useMemo(
+    () => showcaseWorks.filter((work) => work.discipline === activeDiscipline),
+    [activeDiscipline]
+  );
+
   return (
     <section
       id="portfolio"
@@ -60,22 +79,39 @@ export default function StandalonePortfolio() {
         </motion.div>
 
         <div className="mb-8 grid gap-3 md:grid-cols-2">
-          {Object.entries(portfolioCategories).map(([discipline, categories]) => {
-            const Icon = discipline === "Graphic Design" ? Palette : PanelTop;
+          {portfolioGroups.map((group) => {
+            const Icon = group.icon;
+            const isActive = activeDiscipline === group.title;
 
             return (
-              <div
-                key={discipline}
-                className="rounded-[24px] border border-white/10 bg-white/[0.05] p-4 backdrop-blur-xl sm:p-5"
+              <button
+                key={group.title}
+                type="button"
+                onClick={() => setActiveDiscipline(group.title)}
+                className={`rounded-[24px] border p-4 text-left backdrop-blur-xl transition sm:p-5 ${
+                  isActive
+                    ? "border-accent-300/60 bg-accent-300/12 shadow-lg shadow-accent-500/10"
+                    : "border-white/10 bg-white/[0.05] hover:bg-white/[0.08]"
+                }`}
+                aria-pressed={isActive}
               >
                 <div className="mb-4 flex items-center gap-3">
-                  <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-white text-surface-950">
+                  <div
+                    className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl ${
+                      isActive ? "bg-white text-surface-950" : "bg-white/10 text-white"
+                    }`}
+                  >
                     <Icon className="h-5 w-5" />
                   </div>
-                  <h3 className="text-lg font-black text-white">{discipline}</h3>
+                  <div>
+                    <h3 className="text-lg font-black text-white">{group.title}</h3>
+                    <p className="mt-1 text-xs leading-5 text-surface-200/58">
+                      {group.description}
+                    </p>
+                  </div>
                 </div>
                 <div className="flex flex-wrap gap-2">
-                  {categories.map((category) => (
+                  {group.categories.map((category) => (
                     <span
                       key={category}
                       className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-surface-200/70"
@@ -84,13 +120,29 @@ export default function StandalonePortfolio() {
                     </span>
                   ))}
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>
 
+        <div className="mb-4 flex items-end justify-between gap-4">
+          <div>
+            <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-accent-300 sm:text-xs sm:tracking-[0.24em]">
+              {activeDiscipline}
+            </p>
+            <h3 className="mt-2 text-2xl font-black text-white">
+              {activeDiscipline === "Graphic Design"
+                ? "Graphic design previews"
+                : "Website design previews"}
+            </h3>
+          </div>
+          <span className="hidden rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-bold text-surface-200/60 sm:inline-flex">
+            {activeWorks.length} works
+          </span>
+        </div>
+
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {showcaseWorks.map((work) => (
+          {activeWorks.map((work) => (
             <motion.article
               key={work.id}
               initial={{ opacity: 0, y: 18 }}

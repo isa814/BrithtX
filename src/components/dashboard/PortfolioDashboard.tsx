@@ -390,76 +390,78 @@ export default function PortfolioDashboard() {
                 const isActive = subcategory.id === activeSubcategory.id;
 
                 return (
-                  <button
-                    key={subcategory.id}
-                    type="button"
-                    onClick={() => setActiveSubcategoryId(subcategory.id)}
-                    className={`rounded-[22px] border p-3.5 text-left transition sm:rounded-[24px] sm:p-4 ${
-                      isActive
-                        ? "border-accent-300/60 bg-accent-300/12 shadow-lg shadow-accent-500/10"
-                        : "border-white/10 bg-white/[0.05] hover:bg-white/[0.09]"
-                    }`}
-                  >
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="text-sm font-black text-white sm:text-base">
-                        {subcategory.title}
-                      </h3>
-                      <span
-                        className={`mt-1 h-2.5 w-2.5 rounded-full ${
-                          isActive ? "bg-accent-300" : "bg-white/20"
-                        }`}
-                      />
-                    </div>
-                    <p className="mt-2 line-clamp-2 text-xs leading-5 text-surface-200/55">
-                      {subcategory.description}
-                    </p>
-                    <span
-                      className="mt-3 inline-flex min-h-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-3 text-xs font-black text-white"
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        setActiveRequest({
-                          category: activeCategory,
-                          subcategory,
-                          project: subcategory.projects[0],
-                        });
-                      }}
+                  <div key={subcategory.id} className="contents">
+                    <button
+                      type="button"
+                      onClick={() => setActiveSubcategoryId(subcategory.id)}
+                      className={`rounded-[22px] border p-3.5 text-left transition sm:rounded-[24px] sm:p-4 ${
+                        isActive
+                          ? "border-accent-300/60 bg-accent-300/12 shadow-lg shadow-accent-500/10"
+                          : "border-white/10 bg-white/[0.05] hover:bg-white/[0.09]"
+                      }`}
                     >
-                      Request Project
-                    </span>
-                  </button>
+                      <div className="flex items-start justify-between gap-3">
+                        <h3 className="text-sm font-black text-white sm:text-base">
+                          {subcategory.title}
+                        </h3>
+                        <span
+                          className={`mt-1 h-2.5 w-2.5 rounded-full ${
+                            isActive ? "bg-accent-300" : "bg-white/20"
+                          }`}
+                        />
+                      </div>
+                      <p className="mt-2 line-clamp-2 text-xs leading-5 text-surface-200/55">
+                        {subcategory.description}
+                      </p>
+                      <span
+                        className="mt-3 inline-flex min-h-9 items-center justify-center rounded-xl border border-white/10 bg-white/5 px-3 text-xs font-black text-white"
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setActiveRequest({
+                            category: activeCategory,
+                            subcategory,
+                            project: subcategory.projects[0],
+                          });
+                        }}
+                      >
+                        Request Project
+                      </span>
+                    </button>
+
+                    <AnimatePresence mode="wait">
+                      {isActive && (
+                        <motion.div
+                          key={`${activeCategory.id}-${subcategory.id}`}
+                          initial={{ opacity: 0, y: 14 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: -10 }}
+                          transition={{ duration: 0.22 }}
+                          className="col-span-full"
+                        >
+                          <SubcategoryCarousel
+                            category={activeCategory}
+                            subcategory={subcategory}
+                            onRequest={(category, selectedSubcategory, project) =>
+                              setActiveRequest({
+                                category,
+                                subcategory: selectedSubcategory,
+                                project,
+                              })
+                            }
+                            onPreview={(category, selectedSubcategory, project) =>
+                              setActivePreview({
+                                category,
+                                subcategory: selectedSubcategory,
+                                project,
+                              })
+                            }
+                          />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 );
               })}
-            </div>
-
-            <div className="space-y-5">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`${activeCategory.id}-${activeSubcategory.id}`}
-                  initial={{ opacity: 0, y: 18 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -18 }}
-                  transition={{ duration: 0.24 }}
-                >
-                  <SubcategoryCarousel
-                    category={activeCategory}
-                    subcategory={activeSubcategory}
-                    onRequest={(category, selectedSubcategory, project) =>
-                      setActiveRequest({
-                        category,
-                        subcategory: selectedSubcategory,
-                        project,
-                      })
-                    }
-                    onPreview={(category, selectedSubcategory, project) =>
-                      setActivePreview({
-                        category,
-                        subcategory: selectedSubcategory,
-                        project,
-                      })
-                    }
-                  />
-                </motion.div>
-              </AnimatePresence>
             </div>
           </motion.section>
         </AnimatePresence>

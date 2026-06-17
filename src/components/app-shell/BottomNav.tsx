@@ -5,9 +5,9 @@ import { BriefcaseBusiness, Home, Images, Mail, ShoppingBag } from "lucide-react
 
 const navItems = [
   { label: "Home", href: "#home", icon: Home },
-  { label: "Services", href: "#services", icon: BriefcaseBusiness },
+  { label: "Service", href: "#services", icon: BriefcaseBusiness },
   { label: "Portfolio", href: "#portfolio", icon: Images },
-  { label: "Orders", href: "#orders", icon: ShoppingBag },
+  { label: "Order", href: "#orders", icon: ShoppingBag },
   { label: "Contact", href: "#contact", icon: Mail },
 ];
 

@@ -4,9 +4,9 @@ import { Mail, ShieldCheck } from "lucide-react";
 
 const navItems = [
   { label: "Home", href: "#home" },
-  { label: "Services", href: "#services" },
+  { label: "Service", href: "#services" },
   { label: "Portfolio", href: "#portfolio" },
-  { label: "Orders", href: "#orders" },
+  { label: "Order", href: "#orders" },
   { label: "Contact", href: "#contact" },
 ];
 
