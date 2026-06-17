@@ -2,15 +2,29 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BadgeCheck, LogIn, Sparkles } from "lucide-react";
+import {
+  ArrowRight,
+  BadgeCheck,
+  BriefcaseBusiness,
+  Images,
+  LogIn,
+  Palette,
+  ShoppingBag,
+  Sparkles,
+} from "lucide-react";
 import AuthPanel from "./AuthPanel";
 import GlassCard from "@/components/shared/GlassCard";
-import { dashboardStats } from "@/lib/portfolio-data";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
 type WelcomeScreenProps = {
-  onEnter: () => void;
+  onEnter: (target?: string) => void;
 };
+
+const entryStats = [
+  { label: "Design Focus", value: "2" },
+  { label: "Portfolio Areas", value: "9" },
+  { label: "Client Paths", value: "3" },
+];
 
 export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
   const [mode, setMode] = useState<"login" | "signup">("login");
@@ -35,7 +49,7 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
             className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-accent-300 sm:mb-6 sm:text-xs sm:tracking-[0.24em]"
           >
             <Sparkles className="h-3.5 w-3.5" />
-            Premium portfolio app
+            Graphic design and website design
           </motion.div>
 
           <motion.h1
@@ -52,39 +66,58 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
             variants={fadeUp}
             className="mt-4 max-w-2xl text-sm leading-7 text-surface-200/68 sm:mt-5 sm:text-lg sm:leading-8"
           >
-            Explore a futuristic portfolio dashboard for design, development,
-            templates, marketing tools, and Web3 product experiences.
+            See my selected work, browse services, and start a client request
+            without confusing the portfolio showcase with the app dashboard.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-3">
             <button
               type="button"
-              onClick={() => setMode("login")}
-              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10 sm:py-4"
-            >
-              <LogIn className="h-4 w-4" />
-              Login
-            </button>
-            <button
-              type="button"
-              onClick={() => setMode("signup")}
-              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10 sm:px-6 sm:py-4"
-            >
-              <BadgeCheck className="h-4 w-4" />
-              Sign Up
-            </button>
-            <button
-              type="button"
-              onClick={onEnter}
+              onClick={() => onEnter("#portfolio")}
               className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3.5 text-sm font-black text-surface-950 transition hover:bg-accent-100 sm:py-4"
             >
-              Continue as Guest
+              <Images className="h-4 w-4" />
+              View Portfolio
+            </button>
+            <button
+              type="button"
+              onClick={() => onEnter("#services")}
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10 sm:px-6 sm:py-4"
+            >
+              <BriefcaseBusiness className="h-4 w-4" />
+              Browse Services
+            </button>
+            <button
+              type="button"
+              onClick={() => onEnter("#orders")}
+              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10 sm:py-4"
+            >
+              Start an Order
               <ArrowRight className="h-4 w-4" />
             </button>
           </motion.div>
 
+          <motion.div variants={fadeUp} className="mt-4 flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => setMode("login")}
+              className="flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 text-xs font-bold text-surface-200/70 transition hover:bg-white/10 hover:text-white"
+            >
+              <LogIn className="h-3.5 w-3.5" />
+              Client Login
+            </button>
+            <button
+              type="button"
+              onClick={() => setMode("signup")}
+              className="flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 text-xs font-bold text-surface-200/70 transition hover:bg-white/10 hover:text-white"
+            >
+              <BadgeCheck className="h-3.5 w-3.5" />
+              Create Client Profile
+            </button>
+          </motion.div>
+
           <motion.div variants={fadeUp} className="mt-6 grid grid-cols-3 gap-2 sm:mt-8 sm:gap-3">
-            {dashboardStats.map((stat) => (
+            {entryStats.map((stat) => (
               <GlassCard key={stat.label} className="rounded-2xl px-2 py-3 text-center sm:px-3 sm:py-4">
                 <div className="text-lg font-black text-white sm:text-xl">{stat.value}</div>
                 <div className="mt-1 text-[10px] font-medium leading-4 text-surface-200/50 sm:text-[11px]">
@@ -108,20 +141,32 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
                   <p className="text-[10px] uppercase tracking-[0.2em] text-surface-200/45 sm:text-xs sm:tracking-[0.24em]">
                     BrithtonX
                   </p>
-                  <h2 className="mt-1 text-xl font-black text-white sm:text-2xl">Client Portal</h2>
+                  <h2 className="mt-1 text-xl font-black text-white sm:text-2xl">Client Workspace</h2>
                 </div>
                 <div className="h-3 w-3 rounded-full bg-emerald-400 shadow-[0_0_24px_rgba(52,211,153,0.8)]" />
               </div>
               <div className="grid grid-cols-2 gap-2 sm:gap-3">
-                {["Design", "Code", "Launch", "Scale"].map((item) => (
+                {[
+                  { label: "Graphic Design", icon: Palette },
+                  { label: "Websites", icon: Images },
+                  { label: "Services", icon: BriefcaseBusiness },
+                  { label: "Orders", icon: ShoppingBag },
+                ].map((item) => {
+                  const Icon = item.icon;
+
+                  return (
                   <div
-                    key={item}
+                    key={item.label}
                     className="rounded-2xl border border-white/10 bg-white/5 p-3 text-xs font-bold text-white sm:p-4 sm:text-sm"
                   >
-                    {item}
+                    <div className="flex items-center gap-2">
+                      <Icon className="h-4 w-4 text-accent-300" />
+                      <span>{item.label}</span>
+                    </div>
                     <div className="mt-2 h-1.5 rounded-full bg-gradient-to-r from-accent-400 to-primary-400 sm:mt-3" />
                   </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 

@@ -3,31 +3,34 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "BrithtonX | Premium Design & Development Portfolio App",
+  title: "BrithtonX | Graphic Design & Website Design Portfolio",
   description:
-    "A premium app-like portfolio for BrithtonX services across graphic design, websites, app development, templates, marketing tools, and Web3 design.",
+    "Explore BrithtonX graphic design and website design work, then request logo, flyer, brand identity, portfolio website, business website, Shopify, Wix, or SaaS website services.",
   keywords: [
     "BrithtonX",
-    "portfolio app",
+    "graphic design portfolio",
+    "website design portfolio",
     "graphic design",
     "website design",
-    "app development",
-    "website templates",
-    "marketing tools",
-    "Web3 design",
+    "logo design",
+    "flyer design",
+    "brand identity",
+    "Shopify website",
+    "Wix website",
+    "SaaS website",
   ],
   openGraph: {
-    title: "BrithtonX | Premium Design & Development Portfolio App",
+    title: "BrithtonX | Graphic Design & Website Design Portfolio",
     description:
-      "Explore BrithtonX services through a futuristic mobile-first portfolio dashboard.",
+      "View BrithtonX graphic design and website design work, then start a client request.",
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "BrithtonX | Premium Design & Development Portfolio App",
+    title: "BrithtonX | Graphic Design & Website Design Portfolio",
     description:
-      "Explore BrithtonX services through a futuristic mobile-first portfolio dashboard.",
+      "View BrithtonX graphic design and website design work, then start a client request.",
   },
   robots: {
     index: true,

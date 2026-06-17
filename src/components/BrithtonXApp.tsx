@@ -1,12 +1,28 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import AppShell from "./app-shell/AppShell";
 import WelcomeScreen from "./auth/WelcomeScreen";
 
 export default function BrithtonXApp() {
   const [entered, setEntered] = useState(false);
+  const [entryTarget, setEntryTarget] = useState("#home");
+
+  useEffect(() => {
+    if (!entered || entryTarget === "#home") return;
+
+    const frame = window.requestAnimationFrame(() => {
+      document.querySelector(entryTarget)?.scrollIntoView({ block: "start" });
+    });
+
+    return () => window.cancelAnimationFrame(frame);
+  }, [entered, entryTarget]);
+
+  const handleEnter = (target = "#home") => {
+    setEntryTarget(target);
+    setEntered(true);
+  };
 
   return (
     <AnimatePresence mode="wait">
@@ -28,7 +44,7 @@ export default function BrithtonXApp() {
           exit={{ opacity: 0, scale: 0.98 }}
           transition={{ duration: 0.35 }}
         >
-          <WelcomeScreen onEnter={() => setEntered(true)} />
+          <WelcomeScreen onEnter={handleEnter} />
         </motion.div>
       )}
     </AnimatePresence>

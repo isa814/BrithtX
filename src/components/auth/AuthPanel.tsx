@@ -10,7 +10,7 @@ type AuthMode = "login" | "signup";
 type AuthPanelProps = {
   mode: AuthMode;
   onModeChange: (mode: AuthMode) => void;
-  onEnter: () => void;
+  onEnter: (target?: string) => void;
 };
 
 type FormErrors = Partial<Record<"name" | "email" | "password" | "confirmPassword", string>>;
@@ -28,8 +28,8 @@ export default function AuthPanel({ mode, onModeChange, onEnter }: AuthPanelProp
   const title = mode === "login" ? "Login to BrithtonX" : "Create your BrithtonX account";
   const subtitle =
     mode === "login"
-      ? "Use your email and password to enter the dashboard."
-      : "Start with a local preview account. Real auth comes later.";
+      ? "Use your email and password to enter the client workspace."
+      : "Create a preview client profile for future orders.";
 
   const clearModeErrors = (nextMode: AuthMode) => {
     setErrors({});
@@ -271,10 +271,10 @@ export default function AuthPanel({ mode, onModeChange, onEnter }: AuthPanelProp
 
           <button
             type="button"
-            onClick={onEnter}
+            onClick={() => onEnter("#portfolio")}
             className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
           >
-            Continue as Guest
+            View Portfolio as Guest
           </button>
 
           <p className="pt-1 text-center text-xs leading-relaxed text-surface-200/55">
