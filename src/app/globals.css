@@ -108,19 +108,29 @@
   }
 
   .welcome-mobile-bg {
-    animation: welcome-mobile-zoom 16s ease-in-out infinite alternate;
-    transform-origin: center;
-    will-change: transform;
+    animation: welcome-mobile-zoom 30s ease-in-out infinite alternate;
+    background-position: center top;
+    filter: saturate(1.08) contrast(1.04) brightness(0.9);
+    transform: scale(1.03) translate3d(0, 0, 0);
+    transform-origin: center top;
+    will-change: transform, filter;
   }
 }
 
 @keyframes welcome-mobile-zoom {
-  from {
-    transform: scale(1);
+  0% {
+    filter: saturate(1.02) contrast(1.02) brightness(0.92);
+    transform: scale(1.03) translate3d(0, 0, 0);
   }
 
-  to {
-    transform: scale(1.08);
+  55% {
+    filter: saturate(1.08) contrast(1.05) brightness(0.86);
+    transform: scale(1.09) translate3d(-1.2%, -1.4%, 0);
+  }
+
+  100% {
+    filter: saturate(1.12) contrast(1.06) brightness(0.82);
+    transform: scale(1.14) translate3d(1.2%, -2.4%, 0);
   }
 }
 

@@ -26,13 +26,20 @@ const entryStats = [
 
 export default function WelcomeScreen({ onAuth }: WelcomeScreenProps) {
   return (
-    <section className="relative min-h-dvh overflow-hidden px-4 py-5 sm:px-6 sm:py-6 lg:px-8">
+    <section className="relative min-h-dvh overflow-hidden bg-surface-950 px-4 py-5 sm:px-6 sm:py-6 lg:px-8">
       <div className="pointer-events-none absolute inset-0 sm:hidden">
         <div
-          className="welcome-mobile-bg absolute inset-0 bg-cover bg-center"
+          className="welcome-mobile-bg absolute inset-[-5%] bg-cover"
           style={{ backgroundImage: "url('/images/welcome-creative-bg.png')" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-surface-950/45 via-surface-950/20 to-surface-950/92" />
+        <div className="absolute inset-0 bg-black/35" />
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 20%, rgba(129, 140, 248, 0.18), transparent 34%), linear-gradient(to bottom, rgba(2, 6, 23, 0.56), rgba(2, 6, 23, 0.22) 34%, rgba(2, 6, 23, 0.78) 70%, #020617 100%)",
+          }}
+        />
       </div>
 
       <div className="pointer-events-none absolute inset-0 hidden sm:block">
@@ -41,16 +48,16 @@ export default function WelcomeScreen({ onAuth }: WelcomeScreenProps) {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_30%),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[length:100%_100%,48px_48px,48px_48px]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-40px)] w-full max-w-6xl flex-col justify-end gap-6 pb-3 sm:justify-center sm:pb-0 lg:grid lg:min-h-[calc(100dvh-48px)] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-8">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-40px)] w-full max-w-6xl flex-col justify-end gap-6 pb-[calc(1rem+env(safe-area-inset-bottom))] sm:justify-center sm:pb-0 lg:grid lg:min-h-[calc(100dvh-48px)] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-8">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           animate="show"
-          className="pt-4 sm:pt-8 lg:pt-0"
+          className="rounded-[28px] border border-white/10 bg-surface-950/28 p-4 shadow-2xl shadow-black/30 backdrop-blur-[2px] sm:border-0 sm:bg-transparent sm:p-0 sm:shadow-none sm:backdrop-blur-0 sm:pt-8 lg:pt-0"
         >
           <motion.div
             variants={fadeUp}
-            className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-accent-300 sm:mb-6 sm:text-xs sm:tracking-[0.24em]"
+            className="mb-4 inline-flex max-w-full items-center gap-2 rounded-full border border-white/10 bg-black/25 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-accent-200 shadow-lg shadow-black/15 sm:mb-6 sm:bg-white/5 sm:text-xs sm:text-accent-300 sm:tracking-[0.24em]"
           >
             <Sparkles className="h-3.5 w-3.5" />
             Graphic design and website design
@@ -58,7 +65,7 @@ export default function WelcomeScreen({ onAuth }: WelcomeScreenProps) {
 
           <motion.h1
             variants={fadeUp}
-            className="max-w-3xl text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl"
+            className="max-w-3xl text-4xl font-black tracking-tight text-white drop-shadow-[0_6px_24px_rgba(0,0,0,0.75)] sm:text-5xl sm:drop-shadow-none lg:text-7xl"
           >
             Welcome to{" "}
             <span className="bg-gradient-to-r from-white via-accent-200 to-primary-300 bg-clip-text text-transparent">
@@ -68,7 +75,7 @@ export default function WelcomeScreen({ onAuth }: WelcomeScreenProps) {
 
           <motion.p
             variants={fadeUp}
-            className="mt-4 max-w-2xl text-sm leading-7 text-surface-200/68 sm:mt-5 sm:text-lg sm:leading-8"
+            className="mt-4 max-w-2xl text-sm font-medium leading-7 text-surface-100/86 drop-shadow-[0_4px_18px_rgba(0,0,0,0.8)] sm:mt-5 sm:text-lg sm:font-normal sm:leading-8 sm:text-surface-200/68 sm:drop-shadow-none"
           >
             Turning Ideas Into Impactful Designs. High engagement creatives
             for modern brands.
