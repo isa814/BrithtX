@@ -34,6 +34,12 @@ type ActiveProjectContext = {
   project?: PortfolioProject;
 };
 
+type ActivePreviewContext = {
+  category: PortfolioCategory;
+  subcategory: PortfolioSubcategory;
+  project: PortfolioProject;
+};
+
 const getPriceNumber = (priceLabel: string) => {
   const [firstNumber] = priceLabel.match(/\d[\d,]*/g) ?? [];
   return firstNumber ? Number(firstNumber.replace(/,/g, "")) : 0;
@@ -75,7 +81,7 @@ export default function PortfolioDashboard() {
     portfolioCategories[0].subcategories[0].id
   );
   const [activeRequest, setActiveRequest] = useState<ActiveProjectContext | null>(null);
-  const [activePreview, setActivePreview] = useState<ActiveProjectContext | null>(null);
+  const [activePreview, setActivePreview] = useState<ActivePreviewContext | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterCategoryId, setFilterCategoryId] = useState("all");
   const [budgetFilter, setBudgetFilter] =
@@ -129,7 +135,7 @@ export default function PortfolioDashboard() {
   };
 
   return (
-    <main id="dashboard" className="relative overflow-hidden px-4 pb-24 pt-5 sm:px-6 sm:pb-28 sm:pt-6 lg:px-8">
+    <section className="relative overflow-hidden px-4 pb-16 pt-5 sm:px-6 sm:pb-20 sm:pt-6 lg:px-8">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute left-[-120px] top-24 h-[360px] w-[360px] rounded-full bg-primary-600/12 blur-[110px]" />
         <div className="absolute right-[-140px] top-1/3 h-[420px] w-[420px] rounded-full bg-accent-500/10 blur-[120px]" />
@@ -148,7 +154,7 @@ export default function PortfolioDashboard() {
               className="mb-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-accent-300 sm:mb-6 sm:text-xs sm:tracking-[0.22em]"
             >
               <Radar className="h-3.5 w-3.5" />
-              Portfolio dashboard
+              Service dashboard
             </motion.div>
             <motion.h1
               variants={fadeUp}
@@ -160,23 +166,23 @@ export default function PortfolioDashboard() {
               variants={fadeUp}
               className="mt-4 max-w-3xl text-sm leading-7 text-surface-200/64 sm:mt-5 sm:text-base sm:leading-8"
             >
-              Browse categories, explore rotating project samples, and request a client-ready
-              build without leaving the dashboard.
+              Browse service categories, explore rotating project samples, and start a
+              client-ready order without mixing it with the clean portfolio showcase.
             </motion.p>
             <motion.div variants={fadeUp} className="mt-6 flex flex-col gap-3 sm:mt-7 sm:flex-row">
               <a
-                href="#categories"
+                href="#services"
                 className="flex min-h-12 items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3 text-sm font-black text-surface-950 transition hover:bg-accent-100 sm:py-3.5"
               >
-                Explore categories
+                Explore services
                 <ArrowRight className="h-4 w-4" />
               </a>
               <a
-                href="#request"
+                href="#orders"
                 className="flex min-h-12 items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3 text-sm font-bold text-white transition hover:bg-white/10 sm:py-3.5"
               >
                 <Mail className="h-4 w-4" />
-                Request custom build
+                Start an order
               </a>
             </motion.div>
           </GlassCard>
@@ -217,7 +223,7 @@ export default function PortfolioDashboard() {
         <GlassCard className="rounded-[26px] p-4 sm:rounded-[30px] sm:p-5">
           <div className="mb-4 flex items-center gap-2 text-sm font-black text-white">
             <SlidersHorizontal className="h-4 w-4 text-accent-300" />
-            Search and filter portfolio
+            Search and filter services
           </div>
           <div className="grid gap-3 md:grid-cols-2 lg:grid-cols-[1.2fr_0.9fr_0.75fr_0.6fr]">
             <label className="relative block">
@@ -317,7 +323,7 @@ export default function PortfolioDashboard() {
           </section>
         )}
 
-        <section className="py-5">
+        <section id="services" className="scroll-mt-24 py-5">
           <CategoryRail
             categories={portfolioCategories}
             activeId={activeCategory.id}
@@ -373,7 +379,7 @@ export default function PortfolioDashboard() {
                       <Layers3 className="h-5 w-5 text-accent-300" />
                       UI
                     </div>
-                    <div className="mt-1 text-xs text-surface-200/50">App-like flow</div>
+                    <div className="mt-1 text-xs text-surface-200/50">Service flow</div>
                   </div>
                 </div>
               </div>
@@ -458,15 +464,15 @@ export default function PortfolioDashboard() {
           </motion.section>
         </AnimatePresence>
 
-        <section id="request" className="py-6">
+        <section id="orders" className="scroll-mt-24 py-6">
           <GlassCard className="rounded-[28px] p-5 text-center sm:rounded-[34px] sm:p-8">
             <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-300 sm:text-xs sm:tracking-[0.24em]">
-              Custom request
+              Orders
             </p>
             <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl">Need something specific?</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-surface-200/60">
               Choose any sample as a starting point, or send a custom project request through
-              the same contact system already connected to this portfolio.
+              the same ordering system that keeps client requests separate from the portfolio.
             </p>
             <button
               type="button"
@@ -506,6 +512,6 @@ export default function PortfolioDashboard() {
           }}
         />
       )}
-    </main>
+    </section>
   );
 }

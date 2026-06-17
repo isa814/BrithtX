@@ -42,6 +42,26 @@ export type PortfolioItem = {
   project: PortfolioProject;
 };
 
+export type ShowcaseCategory =
+  | "Logo Design"
+  | "Flyer Design"
+  | "Social Media Design"
+  | "Brand Identity"
+  | "Portfolio Websites"
+  | "Business Websites"
+  | "Shopify Stores"
+  | "Wix Websites"
+  | "SaaS Websites";
+
+export type ShowcaseWork = {
+  id: string;
+  title: string;
+  discipline: "Graphic Design" | "Website Design";
+  category: ShowcaseCategory;
+  tools: string[];
+  image: string;
+};
+
 const images = {
   design:
     "https://images.pexels.com/photos/196645/pexels-photo-196645.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1200&h=800",
@@ -846,4 +866,79 @@ export const dashboardStats = [
   { label: "Categories", value: String(portfolioCategories.length) },
   { label: "Subcategories", value: String(portfolioItems.length ? portfolioCategories.reduce((total, category) => total + category.subcategories.length, 0) : 0) },
   { label: "Projects", value: String(portfolioItems.length) },
+];
+
+export const showcaseWorks: ShowcaseWork[] = [
+  {
+    id: "showcase-logo-xnova",
+    title: "Xnova Tech Mark",
+    discipline: "Graphic Design",
+    category: "Logo Design",
+    tools: ["Illustrator", "Photoshop"],
+    image: images.brand,
+  },
+  {
+    id: "showcase-flyer-neon",
+    title: "Neon Product Launch Flyer",
+    discipline: "Graphic Design",
+    category: "Flyer Design",
+    tools: ["Photoshop", "Canva"],
+    image: images.flyerOne,
+  },
+  {
+    id: "showcase-social-growth",
+    title: "Growth Campaign Pack",
+    discipline: "Graphic Design",
+    category: "Social Media Design",
+    tools: ["Canva", "Photoshop"],
+    image: images.social,
+  },
+  {
+    id: "showcase-brand-orbit",
+    title: "Orbit Studio Brand Kit",
+    discipline: "Graphic Design",
+    category: "Brand Identity",
+    tools: ["Illustrator", "Figma"],
+    image: images.design,
+  },
+  {
+    id: "showcase-portfolio-creator",
+    title: "Creator Portfolio Website",
+    discipline: "Website Design",
+    category: "Portfolio Websites",
+    tools: ["Figma", "Next.js"],
+    image: images.templates,
+  },
+  {
+    id: "showcase-business-consulting",
+    title: "Consulting Studio Website",
+    discipline: "Website Design",
+    category: "Business Websites",
+    tools: ["Figma", "Next.js"],
+    image: images.website,
+  },
+  {
+    id: "showcase-shopify-fashion",
+    title: "Fashion Storefront",
+    discipline: "Website Design",
+    category: "Shopify Stores",
+    tools: ["Shopify", "Liquid"],
+    image: images.ecommerce,
+  },
+  {
+    id: "showcase-wix-service",
+    title: "Service Brand Wix Site",
+    discipline: "Website Design",
+    category: "Wix Websites",
+    tools: ["Wix Studio", "Figma"],
+    image: images.marketing,
+  },
+  {
+    id: "showcase-saas-waitlist",
+    title: "SaaS Waitlist Page",
+    discipline: "Website Design",
+    category: "SaaS Websites",
+    tools: ["Figma", "Next.js"],
+    image: images.dashboard,
+  },
 ];
