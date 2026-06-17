@@ -11,13 +11,19 @@ type AuthPanelProps = {
   mode: AuthMode;
   onModeChange: (mode: AuthMode) => void;
   onEnter: (target?: string) => void;
+  compact?: boolean;
 };
 
 type FormErrors = Partial<Record<"name" | "email" | "password" | "confirmPassword", string>>;
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-export default function AuthPanel({ mode, onModeChange, onEnter }: AuthPanelProps) {
+export default function AuthPanel({
+  mode,
+  onModeChange,
+  onEnter,
+  compact = false,
+}: AuthPanelProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -90,7 +96,13 @@ export default function AuthPanel({ mode, onModeChange, onEnter }: AuthPanelProp
   const errorClass = "mt-1.5 flex items-center gap-1.5 text-xs font-medium text-rose-200";
 
   return (
-    <div className="rounded-[24px] border border-white/10 bg-white/[0.07] p-3.5 shadow-2xl shadow-black/30 backdrop-blur-2xl sm:rounded-[28px] sm:p-5">
+    <div
+      className={
+        compact
+          ? ""
+          : "rounded-[24px] border border-white/10 bg-white/[0.07] p-3.5 shadow-2xl shadow-black/30 backdrop-blur-2xl sm:rounded-[28px] sm:p-5"
+      }
+    >
       <div className="mb-4 grid grid-cols-2 rounded-2xl bg-black/20 p-1">
         {(["login", "signup"] as AuthMode[]).map((item) => (
           <button
@@ -108,12 +120,14 @@ export default function AuthPanel({ mode, onModeChange, onEnter }: AuthPanelProp
         ))}
       </div>
 
-      <div className="mb-4">
+      {!compact && (
+        <div className="mb-4">
         <h2 className="text-xl font-black text-white sm:text-2xl">{title}</h2>
         <p className="mt-1 text-xs leading-5 text-surface-200/52 sm:text-sm">
           {subtitle}
         </p>
-      </div>
+        </div>
+      )}
 
       <AnimatePresence mode="wait">
         <motion.form

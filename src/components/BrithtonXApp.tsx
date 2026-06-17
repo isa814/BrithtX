@@ -3,11 +3,13 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import AppShell from "./app-shell/AppShell";
+import AuthScreen from "./auth/AuthScreen";
 import WelcomeScreen from "./auth/WelcomeScreen";
 
 export default function BrithtonXApp() {
-  const [entered, setEntered] = useState(false);
+  const [screen, setScreen] = useState<"intro" | "login" | "signup" | "app">("intro");
   const [entryTarget, setEntryTarget] = useState("#home");
+  const entered = screen === "app";
 
   useEffect(() => {
     if (!entered || entryTarget === "#home") return;
@@ -27,14 +29,14 @@ export default function BrithtonXApp() {
 
   const handleEnter = (target = "#home") => {
     setEntryTarget(target);
-    setEntered(true);
+    setScreen("app");
   };
 
   return (
     <AnimatePresence mode="wait">
-      {entered ? (
+      {screen === "app" ? (
         <motion.div
-          key="dashboard"
+          key="app"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -42,7 +44,7 @@ export default function BrithtonXApp() {
         >
           <AppShell />
         </motion.div>
-      ) : (
+      ) : screen === "intro" ? (
         <motion.div
           key="welcome"
           initial={{ opacity: 0 }}
@@ -50,7 +52,25 @@ export default function BrithtonXApp() {
           exit={{ opacity: 0, scale: 0.98 }}
           transition={{ duration: 0.35 }}
         >
-          <WelcomeScreen onEnter={handleEnter} />
+          <WelcomeScreen
+            onEnter={handleEnter}
+            onAuth={(mode) => setScreen(mode)}
+          />
+        </motion.div>
+      ) : (
+        <motion.div
+          key={screen}
+          initial={{ opacity: 0, x: screen === "login" ? 24 : -24 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: screen === "login" ? -24 : 24 }}
+          transition={{ duration: 0.28 }}
+        >
+          <AuthScreen
+            mode={screen}
+            onBack={() => setScreen("intro")}
+            onEnter={handleEnter}
+            onModeChange={(mode) => setScreen(mode)}
+          />
         </motion.div>
       )}
     </AnimatePresence>

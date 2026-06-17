@@ -12,7 +12,7 @@ type CategoryRailProps = {
 export default function CategoryRail({ categories, activeId, onSelect }: CategoryRailProps) {
   return (
     <div id="categories" className="-mx-4 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0">
-      <div className="flex min-w-max gap-3">
+      <div className="flex min-w-max gap-3 sm:grid sm:min-w-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
         {categories.map((category) => {
           const Icon = category.icon;
           const active = category.id === activeId;
@@ -22,7 +22,7 @@ export default function CategoryRail({ categories, activeId, onSelect }: Categor
               key={category.id}
               type="button"
               onClick={() => onSelect(category.id)}
-              className={`relative flex items-center gap-3 rounded-2xl border px-4 py-3 text-left transition ${
+              className={`relative flex min-h-16 items-center gap-3 rounded-2xl border px-4 py-3 text-left transition sm:w-full ${
                 active
                   ? "border-white/20 bg-white text-surface-950"
                   : "border-white/10 bg-white/[0.06] text-surface-200 hover:bg-white/10 hover:text-white"
