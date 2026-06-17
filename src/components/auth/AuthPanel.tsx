@@ -25,7 +25,7 @@ export default function AuthPanel({ mode, onModeChange, onEnter }: AuthPanelProp
   const [rememberMe, setRememberMe] = useState(true);
   const [errors, setErrors] = useState<FormErrors>({});
 
-  const title = mode === "login" ? "Login to BrithtonX" : "Create your BrithtonX account";
+  const title = mode === "login" ? "Sign in to BrithtonX" : "Create your BrithtonX account";
   const subtitle =
     mode === "login"
       ? "Use your email and password to enter the client workspace."
@@ -103,7 +103,7 @@ export default function AuthPanel({ mode, onModeChange, onEnter }: AuthPanelProp
                 : "text-surface-200/60 hover:text-white"
             }`}
           >
-            {item === "login" ? "Login" : "Sign Up"}
+            {item === "login" ? "Sign In" : "Sign Up"}
           </button>
         ))}
       </div>
@@ -265,7 +265,7 @@ export default function AuthPanel({ mode, onModeChange, onEnter }: AuthPanelProp
             type="submit"
             className="mt-2 flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-primary-500 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-primary-400"
           >
-            {mode === "login" ? "Login" : "Sign Up"}
+            {mode === "login" ? "Sign In" : "Sign Up"}
             <ArrowRight className="h-4 w-4" />
           </button>
 
@@ -284,7 +284,7 @@ export default function AuthPanel({ mode, onModeChange, onEnter }: AuthPanelProp
               onClick={() => clearModeErrors(mode === "login" ? "signup" : "login")}
               className="font-bold text-accent-300 transition hover:text-accent-200"
             >
-              {mode === "login" ? "Sign up" : "Login"}
+              {mode === "login" ? "Sign up" : "Sign in"}
             </button>
           </p>
         </motion.form>

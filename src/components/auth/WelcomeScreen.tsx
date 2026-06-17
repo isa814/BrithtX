@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -28,6 +28,15 @@ const entryStats = [
 
 export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
   const [mode, setMode] = useState<"login" | "signup">("login");
+  const authCardRef = useRef<HTMLDivElement>(null);
+
+  const showAuthMode = (nextMode: "login" | "signup") => {
+    setMode(nextMode);
+
+    window.requestAnimationFrame(() => {
+      authCardRef.current?.scrollIntoView({ block: "start", behavior: "smooth" });
+    });
+  };
 
   return (
     <section className="relative min-h-dvh overflow-hidden px-4 py-5 sm:px-6 sm:py-6 lg:px-8">
@@ -100,15 +109,15 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
           <motion.div variants={fadeUp} className="mt-4 flex flex-wrap gap-2">
             <button
               type="button"
-              onClick={() => setMode("login")}
+              onClick={() => showAuthMode("login")}
               className="flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 text-xs font-bold text-surface-200/70 transition hover:bg-white/10 hover:text-white"
             >
               <LogIn className="h-3.5 w-3.5" />
-              Client Login
+              Client Sign In
             </button>
             <button
               type="button"
-              onClick={() => setMode("signup")}
+              onClick={() => showAuthMode("signup")}
               className="flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 text-xs font-bold text-surface-200/70 transition hover:bg-white/10 hover:text-white"
             >
               <BadgeCheck className="h-3.5 w-3.5" />
@@ -132,10 +141,11 @@ export default function WelcomeScreen({ onEnter }: WelcomeScreenProps) {
           initial={{ opacity: 0, y: 28, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.28, duration: 0.5 }}
-          className="w-full"
+          className="w-full scroll-mt-4"
+          ref={authCardRef}
         >
           <GlassCard className="mx-auto w-full max-w-[460px] rounded-[28px] p-3 sm:rounded-[34px] sm:p-6 lg:max-w-none">
-            <div className="mb-4 rounded-[22px] border border-white/10 bg-black/20 p-4 sm:mb-5 sm:rounded-[26px] sm:p-5">
+            <div className="mb-4 hidden rounded-[22px] border border-white/10 bg-black/20 p-4 sm:mb-5 sm:block sm:rounded-[26px] sm:p-5">
               <div className="mb-4 flex items-center justify-between sm:mb-6">
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.2em] text-surface-200/45 sm:text-xs sm:tracking-[0.24em]">

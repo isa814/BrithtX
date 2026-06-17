@@ -12,11 +12,17 @@ export default function BrithtonXApp() {
   useEffect(() => {
     if (!entered || entryTarget === "#home") return;
 
-    const frame = window.requestAnimationFrame(() => {
+    const scrollToTarget = () => {
       document.querySelector(entryTarget)?.scrollIntoView({ block: "start" });
-    });
+    };
 
-    return () => window.cancelAnimationFrame(frame);
+    const frame = window.requestAnimationFrame(scrollToTarget);
+    const settleTimer = window.setTimeout(scrollToTarget, 420);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(settleTimer);
+    };
   }, [entered, entryTarget]);
 
   const handleEnter = (target = "#home") => {
