@@ -466,31 +466,6 @@ export default function PortfolioDashboard() {
           </motion.section>
         </AnimatePresence>
 
-        <section id="orders" className="scroll-mt-24 py-6">
-          <GlassCard className="rounded-[28px] p-5 text-center sm:rounded-[34px] sm:p-8">
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-accent-300 sm:text-xs sm:tracking-[0.24em]">
-              Orders
-            </p>
-            <h2 className="mt-3 text-2xl font-black text-white sm:text-3xl">Need something specific?</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-sm leading-7 text-surface-200/60">
-              Choose any sample as a starting point, or send a custom project request through
-              the same ordering system that keeps client requests separate from the portfolio.
-            </p>
-            <button
-              type="button"
-              onClick={() =>
-                setActiveRequest({
-                  category: activeCategory,
-                  subcategory: activeCategory.subcategories[0],
-                  project: activeCategory.subcategories[0].projects[0],
-                })
-              }
-              className="mt-6 min-h-12 rounded-2xl bg-white px-6 py-3.5 text-sm font-black text-surface-950 transition hover:bg-accent-100"
-            >
-              Request Project
-            </button>
-          </GlassCard>
-        </section>
       </div>
 
       {activeRequest && (

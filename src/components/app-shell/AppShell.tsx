@@ -4,6 +4,7 @@ import BottomNav from "./BottomNav";
 import TopBar from "./TopBar";
 import PortfolioDashboard from "@/components/dashboard/PortfolioDashboard";
 import StandalonePortfolio from "@/components/portfolio/StandalonePortfolio";
+import OrderSection from "@/components/orders/OrderSection";
 import ContactSection from "@/components/ContactSection";
 
 export default function AppShell() {
@@ -13,6 +14,7 @@ export default function AppShell() {
       <main id="home">
         <PortfolioDashboard />
         <StandalonePortfolio />
+        <OrderSection />
         <ContactSection />
       </main>
       <BottomNav />

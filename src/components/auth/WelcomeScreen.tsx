@@ -27,13 +27,21 @@ const entryStats = [
 export default function WelcomeScreen({ onAuth }: WelcomeScreenProps) {
   return (
     <section className="relative min-h-dvh overflow-hidden px-4 py-5 sm:px-6 sm:py-6 lg:px-8">
-      <div className="pointer-events-none absolute inset-0">
+      <div className="pointer-events-none absolute inset-0 sm:hidden">
+        <div
+          className="welcome-mobile-bg absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url('/images/welcome-creative-bg.png')" }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-surface-950/45 via-surface-950/20 to-surface-950/92" />
+      </div>
+
+      <div className="pointer-events-none absolute inset-0 hidden sm:block">
         <div className="absolute left-1/2 top-[-140px] h-[360px] w-[360px] -translate-x-1/2 rounded-full bg-primary-500/25 blur-[100px]" />
         <div className="absolute bottom-[-120px] right-[-80px] h-[360px] w-[360px] rounded-full bg-accent-500/20 blur-[110px]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.08),transparent_30%),linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[length:100%_100%,48px_48px,48px_48px]" />
       </div>
 
-      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-40px)] w-full max-w-6xl flex-col justify-center gap-6 lg:grid lg:min-h-[calc(100dvh-48px)] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-8">
+      <div className="relative z-10 mx-auto flex min-h-[calc(100dvh-40px)] w-full max-w-6xl flex-col justify-end gap-6 pb-3 sm:justify-center sm:pb-0 lg:grid lg:min-h-[calc(100dvh-48px)] lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-8">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
@@ -62,9 +70,8 @@ export default function WelcomeScreen({ onAuth }: WelcomeScreenProps) {
             variants={fadeUp}
             className="mt-4 max-w-2xl text-sm leading-7 text-surface-200/68 sm:mt-5 sm:text-lg sm:leading-8"
           >
-            A polished creative workspace for viewing my design work,
-            choosing the right service, and starting a client request with
-            clarity.
+            Turning Ideas Into Impactful Designs. High engagement creatives
+            for modern brands.
           </motion.p>
 
           <motion.div variants={fadeUp} className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-2">
@@ -105,7 +112,7 @@ export default function WelcomeScreen({ onAuth }: WelcomeScreenProps) {
             </button>
           </motion.div>
 
-          <motion.div variants={fadeUp} className="mt-6 grid grid-cols-3 gap-2 sm:mt-8 sm:gap-3">
+          <motion.div variants={fadeUp} className="mt-6 hidden grid-cols-3 gap-2 sm:mt-8 sm:grid sm:gap-3">
             {entryStats.map((stat) => (
               <GlassCard key={stat.label} className="rounded-2xl px-2 py-3 text-center sm:px-3 sm:py-4">
                 <div className="text-lg font-black text-white sm:text-xl">{stat.value}</div>
@@ -121,7 +128,7 @@ export default function WelcomeScreen({ onAuth }: WelcomeScreenProps) {
           initial={{ opacity: 0, y: 28, scale: 0.96 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ delay: 0.28, duration: 0.5 }}
-          className="w-full"
+          className="hidden w-full sm:block"
         >
           <GlassCard className="mx-auto w-full max-w-[460px] rounded-[28px] p-4 sm:rounded-[34px] sm:p-6 lg:max-w-none">
             <div className="rounded-[22px] border border-white/10 bg-black/20 p-4 sm:rounded-[26px] sm:p-5">

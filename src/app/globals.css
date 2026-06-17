@@ -106,4 +106,26 @@
   .text-balance {
     text-wrap: balance;
   }
+
+  .welcome-mobile-bg {
+    animation: welcome-mobile-zoom 16s ease-in-out infinite alternate;
+    transform-origin: center;
+    will-change: transform;
+  }
+}
+
+@keyframes welcome-mobile-zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .welcome-mobile-bg {
+    animation: none;
+  }
 }
