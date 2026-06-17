@@ -15,8 +15,7 @@ import GlassCard from "@/components/shared/GlassCard";
 import { fadeUp, staggerContainer } from "@/lib/motion";
 
 type WelcomeScreenProps = {
-  onEnter: (target?: string) => void;
-  onAuth: (mode: "login" | "signup") => void;
+  onAuth: (mode: "login" | "signup", target?: string) => void;
 };
 
 const entryStats = [
@@ -25,7 +24,7 @@ const entryStats = [
   { label: "Client Paths", value: "3" },
 ];
 
-export default function WelcomeScreen({ onEnter, onAuth }: WelcomeScreenProps) {
+export default function WelcomeScreen({ onAuth }: WelcomeScreenProps) {
   return (
     <section className="relative min-h-dvh overflow-hidden px-4 py-5 sm:px-6 sm:py-6 lg:px-8">
       <div className="pointer-events-none absolute inset-0">
@@ -53,10 +52,9 @@ export default function WelcomeScreen({ onEnter, onAuth }: WelcomeScreenProps) {
             variants={fadeUp}
             className="max-w-3xl text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-7xl"
           >
-            BrithtonX builds visuals and websites that look ready to sell.
-            {" "}
+            Welcome to{" "}
             <span className="bg-gradient-to-r from-white via-accent-200 to-primary-300 bg-clip-text text-transparent">
-              Start with the work.
+              BrithtonX
             </span>
           </motion.h1>
 
@@ -69,10 +67,10 @@ export default function WelcomeScreen({ onEnter, onAuth }: WelcomeScreenProps) {
             clarity.
           </motion.p>
 
-          <motion.div variants={fadeUp} className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-3">
+          <motion.div variants={fadeUp} className="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-2">
             <button
               type="button"
-              onClick={() => onEnter("#portfolio")}
+              onClick={() => onAuth("login", "#portfolio")}
               className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl bg-white px-5 py-3.5 text-sm font-black text-surface-950 transition hover:bg-accent-100 sm:py-4"
             >
               <Images className="h-4 w-4" />
@@ -80,15 +78,7 @@ export default function WelcomeScreen({ onEnter, onAuth }: WelcomeScreenProps) {
             </button>
             <button
               type="button"
-              onClick={() => onEnter("#services")}
-              className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10 sm:px-6 sm:py-4"
-            >
-              <BriefcaseBusiness className="h-4 w-4" />
-              Browse Services
-            </button>
-            <button
-              type="button"
-              onClick={() => onEnter("#orders")}
+              onClick={() => onAuth("login", "#orders")}
               className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10 sm:py-4"
             >
               Start an Order
@@ -100,7 +90,7 @@ export default function WelcomeScreen({ onEnter, onAuth }: WelcomeScreenProps) {
             <button
               type="button"
               onClick={() => onAuth("login")}
-              className="flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 text-xs font-bold text-surface-200/70 transition hover:bg-white/10 hover:text-white"
+              className="flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-4 text-xs font-black text-white shadow-lg shadow-black/10 transition hover:bg-white/[0.12]"
             >
               <LogIn className="h-3.5 w-3.5" />
               Client Sign In
@@ -108,7 +98,7 @@ export default function WelcomeScreen({ onEnter, onAuth }: WelcomeScreenProps) {
             <button
               type="button"
               onClick={() => onAuth("signup")}
-              className="flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 text-xs font-bold text-surface-200/70 transition hover:bg-white/10 hover:text-white"
+              className="flex min-h-11 items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-4 text-xs font-black text-white shadow-lg shadow-black/10 transition hover:bg-white/[0.12]"
             >
               <BadgeCheck className="h-3.5 w-3.5" />
               Create Client Profile

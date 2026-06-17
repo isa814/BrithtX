@@ -283,14 +283,6 @@ export default function AuthPanel({
             <ArrowRight className="h-4 w-4" />
           </button>
 
-          <button
-            type="button"
-            onClick={() => onEnter("#portfolio")}
-            className="flex min-h-12 w-full items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm font-bold text-white transition hover:bg-white/10"
-          >
-            View Portfolio as Guest
-          </button>
-
           <p className="pt-1 text-center text-xs leading-relaxed text-surface-200/55">
             {mode === "login" ? "Don't have an account? " : "Already have an account? "}
             <button

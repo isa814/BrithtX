@@ -6,6 +6,7 @@ import GlassCard from "@/components/shared/GlassCard";
 
 type AuthScreenProps = {
   mode: "login" | "signup";
+  target: string;
   onBack: () => void;
   onEnter: (target?: string) => void;
   onModeChange: (mode: "login" | "signup") => void;
@@ -13,6 +14,7 @@ type AuthScreenProps = {
 
 export default function AuthScreen({
   mode,
+  target,
   onBack,
   onEnter,
   onModeChange,
@@ -60,7 +62,7 @@ export default function AuthScreen({
             <AuthPanel
               mode={mode}
               onModeChange={onModeChange}
-              onEnter={onEnter}
+              onEnter={() => onEnter(target)}
               compact
             />
           </GlassCard>

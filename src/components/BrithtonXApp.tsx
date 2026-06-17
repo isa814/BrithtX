@@ -9,6 +9,7 @@ import WelcomeScreen from "./auth/WelcomeScreen";
 export default function BrithtonXApp() {
   const [screen, setScreen] = useState<"intro" | "login" | "signup" | "app">("intro");
   const [entryTarget, setEntryTarget] = useState("#home");
+  const [pendingTarget, setPendingTarget] = useState("#home");
   const entered = screen === "app";
 
   useEffect(() => {
@@ -32,6 +33,11 @@ export default function BrithtonXApp() {
     setScreen("app");
   };
 
+  const handleAuth = (mode: "login" | "signup", target = "#home") => {
+    setPendingTarget(target);
+    setScreen(mode);
+  };
+
   return (
     <AnimatePresence mode="wait">
       {screen === "app" ? (
@@ -53,8 +59,7 @@ export default function BrithtonXApp() {
           transition={{ duration: 0.35 }}
         >
           <WelcomeScreen
-            onEnter={handleEnter}
-            onAuth={(mode) => setScreen(mode)}
+            onAuth={handleAuth}
           />
         </motion.div>
       ) : (
@@ -67,6 +72,7 @@ export default function BrithtonXApp() {
         >
           <AuthScreen
             mode={screen}
+            target={pendingTarget}
             onBack={() => setScreen("intro")}
             onEnter={handleEnter}
             onModeChange={(mode) => setScreen(mode)}
