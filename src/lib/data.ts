@@ -192,6 +192,10 @@ export type Service = {
   title: string;
   description: string;
   icon: string;
+  image: string;
+  imageAlt: string;
+  imageSource: string;
+  tags: string[];
   features: string[];
 };
 
@@ -201,6 +205,11 @@ export const servicesData: Service[] = [
     description:
       "End-to-end SaaS product development from MVP to scale — startup-style apps built for growth and monetization.",
     icon: "rocket",
+    image:
+      "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Laptop showing a SaaS analytics dashboard",
+    imageSource: "https://unsplash.com/photos/person-using-macbook-pro-744oGeqpxPQ",
+    tags: ["MVP", "Dashboard", "Billing"],
     features: [
       "MVP & Prototype Development",
       "Authentication & User Management",
@@ -213,6 +222,11 @@ export const servicesData: Service[] = [
     description:
       "Custom online stores and marketplace platforms built on Shopify, Wix, or custom stacks — designed to convert.",
     icon: "shopping-cart",
+    image:
+      "https://images.unsplash.com/photo-1658297063569-162817482fb6?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Laptop displaying an e-commerce storefront",
+    imageSource: "https://unsplash.com/photos/a-tablet-and-a-laptop-6Pa7l0unTAY",
+    tags: ["Shopify", "Wix", "Checkout"],
     features: [
       "Shopify Custom Stores",
       "Wix Website Development",
@@ -225,6 +239,12 @@ export const servicesData: Service[] = [
     description:
       "Visually compelling branding, UI designs, marketing creatives, and digital assets that boost engagement.",
     icon: "palette",
+    image:
+      "https://images.unsplash.com/photo-1690733546551-1007bc0a3414?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Brand moodboard with photos, fabric, color samples, and scissors",
+    imageSource:
+      "https://unsplash.com/photos/a-bunch-of-pictures-and-a-pair-of-scissors-on-a-table-HszbGgaGjOg",
+    tags: ["Branding", "UI/UX", "Creatives"],
     features: [
       "Brand Identity Design",
       "UI/UX Design & Prototyping",
@@ -237,6 +257,11 @@ export const servicesData: Service[] = [
     description:
       "Custom web applications with clean architecture, responsive design, and business-focused functionality.",
     icon: "globe",
+    image:
+      "https://images.unsplash.com/photo-1780253256194-34e5867ccb8c?auto=format&fit=crop&w=900&q=80",
+    imageAlt: "Developer working on a web application in a code editor",
+    imageSource: "https://unsplash.com/photos/developer-typing-code-on-a-laptop-screen-xaWYIbNIOdw",
+    tags: ["Next.js", "API", "Web3"],
     features: [
       "React / Next.js Applications",
       "Backend API Development",
